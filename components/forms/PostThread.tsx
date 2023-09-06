@@ -12,6 +12,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import type { ThreadSchemaType } from "@/schemas";
 import { ThreadSchema } from "@/schemas";
+import { useOrganization } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { usePathname, useRouter } from "next/navigation";
 import { FC } from "react";
@@ -20,6 +21,7 @@ import { useForm } from "react-hook-form";
 const PostThread: FC<{ userID: string }> = ({ userID }) => {
   const pathname = usePathname();
   const router = useRouter();
+  const { organization } = useOrganization();
 
   const form = useForm<ThreadSchemaType>({
     resolver: zodResolver(ThreadSchema),
@@ -34,7 +36,7 @@ const PostThread: FC<{ userID: string }> = ({ userID }) => {
     await createThread({
       text: values.thread,
       author: userID,
-      communityId: null,
+      communityId: organization ? organization.id : null,
       path: pathname,
     });
 
