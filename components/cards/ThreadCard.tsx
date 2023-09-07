@@ -120,31 +120,29 @@ const ThreadCard: FC<Props> = ({
               </div>
             </div>
           </div>
-
-          {/* TODO: Delete Thread */}
-          {/* TODO: Show comment logos */}
-
-          {!isComment && community && (
-            <>
-              <Link
-                href={`/community/${community.id}`}
-                className="mt-5 flex items-center"
-              >
-                <p className="text-subtle-medium text-gray-1">
-                  {formatDateString(createdAt)}- {community.name} Community
-                </p>
-
-                <Image
-                  src={community.image}
-                  alt="community image"
-                  width={15}
-                  height={15}
-                  className="ml-1 rounded-full object-cover"
-                />
-              </Link>
-            </>
-          )}
         </div>
+        {/* TODO: Delete Thread */}
+        {/* TODO: Show comment logos */}
+        {!isComment && community && (
+          <>
+            <Link
+              href={`/communities/${community.id}`}
+              className="mt-5 flex items-center"
+            >
+              <p className="text-subtle-medium text-gray-1">
+                {formatDateString(createdAt)} - {community.name} Community
+              </p>
+
+              <Image
+                src={community.image}
+                alt="community image"
+                width={15}
+                height={15}
+                className="ml-1 rounded-full object-cover"
+              />
+            </Link>
+          </>
+        )}
       </article>
     </>
   );

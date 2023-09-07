@@ -1,3 +1,4 @@
+import { fetchCommunityPosts } from "@/lib/actions/community.actions";
 import { fetchUserPosts } from "@/lib/actions/user.actions";
 import { redirect } from "next/navigation";
 import { FC } from "react";
@@ -13,7 +14,10 @@ const ThreadsTab: FC<Props> = async ({
   accountId,
   accountType,
 }) => {
-  let result = await fetchUserPosts(accountId);
+  let result =
+    accountType === "community"
+      ? await fetchCommunityPosts(accountId)
+      : await fetchUserPosts(accountId);
 
   if (!result) redirect(`/`);
 

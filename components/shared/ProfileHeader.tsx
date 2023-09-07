@@ -8,6 +8,7 @@ interface Props {
   username: string;
   image: string;
   bio: string;
+  type?: "user" | "community";
 }
 const ProfileHeader: FC<Props> = ({
   accountId,
@@ -16,6 +17,7 @@ const ProfileHeader: FC<Props> = ({
   username,
   image,
   bio,
+  type,
 }) => {
   return (
     <>
